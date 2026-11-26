@@ -4,7 +4,7 @@
 Build a small desktop application for four focused workflows: YouTube/Bilibili video downloads, Hugging Face model repository downloads, and GitHub software release downloads.
 
 ## First release
-- PySide6 desktop shell with source selection, URL/repository input, destination selection, and a unified task list.
+- PySide6-Essentials desktop shell; the Video tab is implemented with URL, quality, destination, cookies, progress, speed, and cancellation controls.
 - yt-dlp for YouTube and Bilibili extraction and downloads. Keep media post-processing optional and document ffmpeg and JavaScript-runtime requirements.
 - Hugging Face Hub client for public model repositories, revision selection, and optional file filters. Private/gated repositories use a user-provided token.
 - GitHub REST API for public release listing and asset downloads. Distinguish release assets from source archives; support an optional user token for private repositories/rate limits.
@@ -21,7 +21,7 @@ Network work must run outside the UI thread. Each adapter should expose validati
 
 ## Delivery milestones
 1. Establish the desktop shell, settings, and task model.
-2. Implement and test the yt-dlp video workflow.
+2. Implement and test the yt-dlp video workflow. (Implementation is in place; live test downloads remain environment-dependent.)
 3. Add Hugging Face model repository download.
 4. Add GitHub release metadata and asset download.
 5. Add persistence, packaging, and platform-specific verification.

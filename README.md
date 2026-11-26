@@ -1,27 +1,30 @@
 # Odow
 
-Odow is a focused desktop downloader for YouTube and Bilibili videos, Hugging Face model repositories, and GitHub release assets.
+Odow is a lightweight desktop downloader. The current build implements YouTube and Bilibili video downloads using yt-dlp.
 
-## Current status
+## Debian 13 / Python 3.13
 
-The repository contains the initial PySide6 application shell and architecture plan. Download adapters and task orchestration are not implemented yet.
+Install Debian's FFmpeg package and the project dependencies. The yt-dlp deno extra installs Deno into the Python environment, and the default extra includes yt-dlp-ejs.
 
-## Requirements
+    sudo apt update
+    sudo apt install ffmpeg
+    /home/software/.venv-3.13/bin/python -m pip install -e '.[build,test]'
 
-- Python 3.10+
-- Optional `ffmpeg` for audio/video post-processing
-- A JavaScript runtime may be required by yt-dlp for some YouTube extraction paths
+MP3 extraction uses FFmpeg.
 
 ## Run from source
 
-```bash
-python -m venv .venv
-# Windows: .venv\\Scripts\\activate
-# macOS/Linux: source .venv/bin/activate
-python -m pip install -e .
-odow
-```
+    /home/software/.venv-3.13/bin/python -m odow.app
 
-## Scope and architecture
+## Build
 
-See [docs/PROJECT_PLAN.md](docs/PROJECT_PLAN.md) for the first-release scope, adapter boundaries, milestones, and validation plan. Network operations will run outside the Qt UI thread. Use only resources and credentials you are authorized to access.
+Install ffmpeg from Debian, then run ./scripts/build_debian.sh. The script locates Deno in the configured Python environment and bundles it; ffmpeg remains a Debian system dependency. Review third-party licenses before redistribution.
+
+## Video features
+
+- Best available, 1080p, 720p, 480p, or MP3 audio-only extraction.
+- Resumable downloads, retries, progress/speed reporting, and cancellation.
+- Optional Netscape-format cookies.txt for content you are authorized to access.
+- One video at a time; playlists are disabled.
+
+See docs/PROJECT_PLAN.md for remaining milestones.
